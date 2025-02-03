@@ -2,27 +2,17 @@ const { DataTypes } = require('sequelize');
 const sequelize  = require('../database');
 
 const Questionario = sequelize.define('Questionario', {
+  
   idquestao: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
   },
-  enunciado: {
+  titulo: {
     type: DataTypes.TEXT,
     allowNull: false,
-  },
-  opcao_primeira: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  },
-  opcao_segunda: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  },
-  opcao_terceira: {
-    type: DataTypes.TEXT,
-    allowNull: true,
+    unique: true,
   },
   data_hora_inicio: {
     type: DataTypes.DATE,

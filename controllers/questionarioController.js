@@ -1,17 +1,14 @@
-
-const Questionario = require('../models/relacionamento');
+const Questionario = require('../models/questionarioModel');
 const criarQuestao = async (req, res) => {
-    const { enunciado, opcao_primeira, opcao_segunda, opcao_terceira, data_hora_inicio, data_hora_fim } = req.body;
+    const { titulo, data_hora_inicio, data_hora_fim } = req.body;
     try {
-        const questao = await Questionario.create({
-            enunciado,
-            opcao_primeira,
-            opcao_segunda,
-            opcao_terceira,
-            data_hora_inicio,
-            data_hora_fim,
+        const questoes = await Questionario.create({
+            titulo: titulo,  
+            data_hora_inicio : data_hora_inicio,
+            data_hora_fim : data_hora_fim
         });
-        return res.status(201).json(questao);
+         console.log("Questão criada com sucesso!");
+        return res.status(201).json(questoes);
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
@@ -19,41 +16,59 @@ const criarQuestao = async (req, res) => {
 const listarQuestoes = async (req, res) => {
     try {
         const questoes = await Questionario.findAll();
-        return res.status(200).json(questoes);
+        console.log("Questões encontradas com sucesso!");
+        return res.status(200).json( {data:questoes} );
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
 }
+const buscarIdPorNome = async (req, res) => {
+    const { titulo } = req.params;
+    try {
+        const questao = await Questionario.findOne({
+            where: { titulo: titulo }
+        },
+        attributes = ['idquestao']
+        );
+        
+        console.log("Questão encontrada com sucesso!");
+        return res.status(200).json({ data:questao.idquestao });
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
+
+}
 const buscarQuestaoPorId = async (req, res) => {
     const { id } = req.params;
+    console.log(id);
     try {
-        const questao = await Questionario.findByPk(id);
-        return res.status(200).json(questao);
+        const questao = await Questionario.findOne({idquestao: id});
+        console.log("Questão encontrada com sucesso!");
+        return res.status(200).json({ data: questao} );
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
 }
 const atualizarQuestao = async (req, res) => {
     const { id } = req.params;
-    const { enunciado, opcao_primeira, opcao_segunda, opcao_terceira, data_hora_inicio, data_hora_fim } = req.body;
+    const { titulo, data_hora_fim, data_hora_inicio } = req.body;
     try {
         await Questionario.update({
-            enunciado,
-            opcao_primeira,
-            opcao_segunda,
-            opcao_terceira,
-            data_hora_inicio,
-            data_hora_fim,
+            titulo: titulo,
+            data_hora_inicio:data_hora_inicio,
+            data_hora_fim:data_hora_fim,
         }, {
             where: { idquestao: id }
         });
-        return res.status(204).end();
+        return res.status(200).json({ message: "Questão atualizada com sucesso!" });
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
 }
 const excluirQuestao = async (req, res) => {
-    const { id } = req.params;
+    console.log("Excluir Questão");
+    const {id} = req.params;
+    console.log("id",id);
     try {
         await Questionario.destroy({
             where: { idquestao: id }
@@ -68,5 +83,6 @@ module.exports = {
     listarQuestoes,
     buscarQuestaoPorId,
     atualizarQuestao,
-    excluirQuestao
+    excluirQuestao,
+    buscarIdPorNome
 }

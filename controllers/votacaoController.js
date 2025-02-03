@@ -1,25 +1,28 @@
 const Votacao = require('../models/votacaoModel');
 
 const realizarVoto = async (req, res) => {
-    const { idquestao, qtdade_votos_primeira_opcao, qtdade_votos_segunda_opcao, qtdade_votos_terceira_opcao } = req.body;
+    const { idquestao,idopcao} = req.body;
     try {
         const votacao = await Votacao.create({
-            idquestao,
-            qtdade_votos_primeira_opcao,
-            qtdade_votos_segunda_opcao,
-            qtdade_votos_terceira_opcao,
+            idquestao: idquestao,
+            idopcao: idopcao,  
+            dia_voto: new Date()
         });
+        console.log("Voto realizado com sucesso!");
         return res.status(201).json(votacao);
     } catch (error) {
+        console.log("Erro ao realizar voto!");
         return res.status(400).json({ error: error.message });
     }
 }
 const listarVotosPorId = async (req, res) => {
-    const { id } = req.params;
+    const { idquestao } = req.params;
     try {
-        const votacao = await Votacao.findByPk(id);
+        const votacao = await Votacao.findByPk(idquestao);
+        console.log("Votos listados com sucesso!");
         return res.status(200).json(votacao);
     } catch (error) {
+        console.log("Erro ao listar votos!");
         return res.status(400).json({ error: error.message });
     }
 }

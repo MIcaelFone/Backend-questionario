@@ -1,5 +1,5 @@
 const { realizarVoto, listarVotosPorId} =require("../controllers/votacaoController");
-const router = require('express').Router();
-router.post('/votos', realizarVoto);
-router.get('/votos/:id', listarVotosPorId);
-module.exports = router;
+const votacaoRouter = require('express').Router();
+votacaoRouter.post('/votos', realizarVoto);
+votacaoRouter.get('/votos/:id', listarVotosPorId);
+module.exports = votacaoRouter;

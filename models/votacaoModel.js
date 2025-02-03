@@ -16,18 +16,15 @@ const Votacao = sequelize.define('Votacao', {
       key: 'idquestao',
     },
   },
-  qtdade_votos_primeira_opcao: {
+  idopcao: {
     type: DataTypes.INTEGER,
-    allowNull: true,
+    allowNull: false,
   },
-  qtdade_votos_segunda_opcao: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
+  dia_voto: {
+    type: DataTypes.DATE,
+    allowNull: false,
   },
-  qtdade_votos_terceira_opcao: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
+   
 }, {
   tableName: 'votacoes', // Nome da tabela no banco
 });
