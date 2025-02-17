@@ -12,11 +12,7 @@ const opcaoModel = sequelize.define('opção', {
         allowNull: false,
     },
     descricao: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-    },
-    dia_voto: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING(255),
         allowNull: false,
     },
     }, {
