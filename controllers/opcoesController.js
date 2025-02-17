@@ -5,7 +5,6 @@ const criarOpcao = async (req, res) => {
         const opcao = await Opcao.create({
             idquestao: idquestao,
             descricao: descricao,
-            dia_voto: new Date(),
         });
         return res.status(201).json(opcao);
     } catch (error) {
@@ -15,8 +14,6 @@ const criarOpcao = async (req, res) => {
 const atualizarOpcao = async (req, res) => {
     const { idopcao } = req.params;
     const { descricao } = req.body;
-    console.log("id: ", idopcao);
-    console.log("descricao: ", descricao);
     try {
         const opcoes = await Opcao.update({ descricao: descricao }, { where: { idopcao: idopcao } });
        
@@ -27,11 +24,9 @@ const atualizarOpcao = async (req, res) => {
     }
 }
 const listarOpcaoPorIdQuestao = async (req, res) => {
-    const { id } = req.params;
-    console.log("idquestao: ", id);
+    const { idquestao } = req.params ;
     try {
-        const opcao = await Opcao.findAll({ where: { idquestao: id } });
-        console.log(opcao)
+        const opcao = await Opcao.findAll({ where: { idquestao: idquestao } });
         console.log("Opções encontradas com sucesso!");
         return res.status(200).json({ data:opcao });
     } catch (error) {
