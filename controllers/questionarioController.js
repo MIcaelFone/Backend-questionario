@@ -1,4 +1,5 @@
 const Questionario = require('../models/questionarioModel');
+const { Op } = require('sequelize');
 const criarQuestao = async (req, res) => {
     const { titulo, data_hora_inicio, data_hora_fim } = req.body;
     try {
@@ -17,7 +18,7 @@ const listarQuestoes = async (req, res) => {
     try {
         const questoes = await Questionario.findAll();
         console.log("Questões encontradas com sucesso!");
-        return res.status(200).json( {data:questoes} );
+        return res.status(200).json( { data:questoes } );
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
@@ -66,9 +67,7 @@ const atualizarQuestao = async (req, res) => {
     }
 }
 const excluirQuestao = async (req, res) => {
-    console.log("Excluir Questão");
     const {id} = req.params;
-    console.log("id",id);
     try {
         await Questionario.destroy({
             where: { idquestao: id }
@@ -78,11 +77,28 @@ const excluirQuestao = async (req, res) => {
         return res.status(400).json({ error: error.message });
     }
 }
+const buscarquestoesDisponiveis = async (req, res) => {
+    try {
+        
+        const questoes = await Questionario.findAll({
+            where: {
+                data_hora_fim: { [Op.gte]: new Date() }, 
+            }
+        });
+        console.log("Questões encontradas com sucesso!", questoes);
+        return res.status(200).json({ data: questoes });
+    } catch (error) {
+        console.error("Erro ao buscar questões:", error);
+        return res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     criarQuestao,
     listarQuestoes,
     buscarQuestaoPorId,
     atualizarQuestao,
     excluirQuestao,
-    buscarIdPorNome
+    buscarIdPorNome,
+    buscarquestoesDisponiveis
 }
