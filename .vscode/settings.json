@@ -1,0 +1,6 @@
+{
+    "conventionalCommits.scopes": [
+        "Chamando bliblioteca especcifica do sequelize,removendo console logs, e adicionar ",
+        "Arrumando o tipo de texto"
+    ]
+}
