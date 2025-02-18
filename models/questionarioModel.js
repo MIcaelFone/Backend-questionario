@@ -10,7 +10,7 @@ const Questionario = sequelize.define('Questionario', {
     allowNull: false,
   },
   titulo: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING(255),
     allowNull: false,
     unique: true,
   },
