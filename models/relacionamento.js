@@ -18,5 +18,12 @@ opcaoModel.hasMany(Votacao, {
 Votacao.belongsTo(opcaoModel, {
   foreignKey: 'idopcao',
 });
-
+Questionario.hasMany(opcaoModel, {
+  foreignKey: 'idquestao', 
+  onDelete: 'CASCADE',     
+  onUpdate: 'CASCADE',
+});
+opcaoModel.belongsTo(Questionario, {
+  foreignKey: 'idquestao', 
+});
 module.exports = { Questionario, Votacao , opcaoModel};
