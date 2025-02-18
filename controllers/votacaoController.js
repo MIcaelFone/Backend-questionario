@@ -1,4 +1,5 @@
 const Votacao = require('../models/votacaoModel');
+const sequelize = require('../database');
 
 const realizarVoto = async (req, res) => {
     const { idquestao,idopcao} = req.body;
@@ -15,15 +16,16 @@ const realizarVoto = async (req, res) => {
         return res.status(400).json({ error: error.message });
     }
 }
-const listarVotosPorId = async (req, res) => {
-    const { idquestao } = req.params;
+const listarContagemVotosPorOpcao = async (req, res) => {
+    const { id } = req.params;
     try {
-        const votacao = await Votacao.findByPk(idquestao);
-        console.log("Votos listados com sucesso!");
-        return res.status(200).json(votacao);
+        const votacao = await Votacao.findAndCountAll({
+           where: {idquestao: id},
+        });
+        return res.status(200).json({ votacao });
     } catch (error) {
-        console.log("Erro ao listar votos!");
+        console.log("Erro ao listar votos!",error);
         return res.status(400).json({ error: error.message });
     }
 }
-module.exports = { realizarVoto, listarVotosPorId };
+module.exports = { realizarVoto, listarContagemVotosPorOpcao };
