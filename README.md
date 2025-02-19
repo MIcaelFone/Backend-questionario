@@ -4,17 +4,22 @@ Uma API RESTful para criação e gerenciamento de questionários dinâmicos, des
 
 ## 🚀 Funcionalidades
 
-- **CRUD de Questionários**:
-  - Criar, ler, atualizar e excluir questionários
-  - Adicionar/remover perguntas
-- **Tipos de Perguntas**:
-  - Múltipla escolha
-- **Respostas**:
-  - Submissão de respostas anônimas ou identificadas
-  - Validação de respostas
+### CRUD de Questões
+- **Criar, listar, atualizar e excluir questões**
+- Buscar questões por ID, título ou disponibilidade
+- Rotas relacionadas: `/questoes`
 
-- **Quantidade votação**:
-  - Estatísticas básicas
+### Opções de Múltipla Escolha
+- Adicionar opções a perguntas
+- Listar opções vinculadas a uma questão
+- Atualizar texto das opções
+- Rotas relacionadas: `/opcao`
+
+### Sistema de Votação
+- Registro de votos anônimos ou identificados
+- Validação de votos (evitar duplicações/opções inválidas)
+- Contagem de votos em tempo real por opção
+- Rotas relacionadas: `/votos`
 
 ## 📦 Tecnologias
 
@@ -40,5 +45,33 @@ Uma API RESTful para criação e gerenciamento de questionários dinâmicos, des
   ```bash
      npm run dev
   ```
+## 📡 Endpoints da API
 
+### **Questões**  
+| Método | Endpoint                     | Descrição                                |  
+|--------|------------------------------|------------------------------------------|  
+| POST   | `/questoes`                  | Cria uma nova questão                    |  
+| GET    | `/questoes`                  | Lista todas as questões cadastradas      |  
+| GET    | `/questoes/disponivel`       | Busca questões marcadas como disponíveis |  
+| GET    | `/questoes/:id`              | Retorna uma questão específica por ID    |  
+| GET    | `/questoes/:titulo`          | Busca o ID de uma questão pelo título    |  
+| PUT    | `/questoes/:id`              | Atualiza os dados de uma questão         |  
+| DELETE | `/questoes/:id`              | Exclui permanentemente uma questão       |  
+
+---
+
+### **Opções de Múltipla Escolha**  
+| Método | Endpoint                     | Descrição                                |  
+|--------|------------------------------|------------------------------------------|  
+| POST   | `/opcao`                     | Adiciona uma nova opção a uma questão    |  
+| GET    | `/opcao/:idquestao`          | Lista todas as opções de uma questão     |  
+| PUT    | `/opcao/:idopcao`            | Edita o texto de uma opção existente     |  
+
+---
+
+### **Votos/Respostas**  
+| Método | Endpoint                     | Descrição                                |  
+|--------|------------------------------|------------------------------------------|  
+| POST   | `/votos`                     | Registra um voto em uma opção            |  
+| GET    | `/votos/:id`                 | Retorna a contagem de votos de uma opção |  
 
