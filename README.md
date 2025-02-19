@@ -30,3 +30,14 @@ Uma API RESTful para criação e gerenciamento de questionários dinâmicos, des
    ```bash
    git clone https://github.com/seu-usuario/questionario-backend.git
    cd questionario-backend
+   ```
+2 **Instalar as bibliotecas utilizadas no projeto**
+ ```bash
+   npm install
+   ```
+## Para rodar o Backend
+```bash
+   npm run dev
+   ```
+
+
