@@ -52,7 +52,7 @@ HOST=endereco_do_servidor (ex: localhost ou 127.0.0.1)
 DATABASE=nome_do_banco_de_dados
 DB_PORT=porta_do_banco (ex: 3306 para MySQL))
 ```
-## Iniciar o servidor 
+## 🚀 Executando o Servidor
 ```bash
   npm run dev
 ```
