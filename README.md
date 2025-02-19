@@ -32,12 +32,12 @@ Uma API RESTful para criação e gerenciamento de questionários dinâmicos, des
    cd questionario-backend
    ```
 2. **Instalar as bibliotecas utilizadas no projeto**:
- ```bash
-   npm install
-   ```
+   ```bash
+     npm install
+     ```
 ## Para rodar o Backend
-```bash
-   npm run dev
-   ```
+  ```bash
+     npm run dev
+  ```
 
 
