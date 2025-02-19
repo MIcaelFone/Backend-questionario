@@ -40,11 +40,18 @@ Uma API RESTful para criação e gerenciamento de questionários dinâmicos, des
    ```bash
      npm install
      ```
-## Para rodar esse projeto
-  1 .**Para iniciar o projeto**
-  ```bash
-     npm run dev
-  ```
+## ⚙️ Configuração do Ambiente (`.env`)
+
+Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+
+```env
+# Banco de Dados
+USER=seu_usuario_do_banco
+PASSWORD=senha_do_banco
+HOST=endereco_do_servidor (ex: localhost ou 127.0.0.1)
+DATABASE=nome_do_banco_de_dados
+DB_PORT=porta_do_banco (ex: 3306 para MySQL))
+```
 ## 📡 Endpoints da API
 
 ### **Questões**  
