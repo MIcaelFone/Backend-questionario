@@ -52,6 +52,19 @@ HOST=endereco_do_servidor (ex: localhost ou 127.0.0.1)
 DATABASE=nome_do_banco_de_dados
 DB_PORT=porta_do_banco (ex: 3306 para MySQL))
 ```
+## Iniciar o servidor 
+```bash
+  npm run dev
+```
+## 🛠 Estrutura do Projeto (Opcional)
+```bash
+/src
+├── controllers/    # Lógica das rotas
+├── models/         # Definições do Sequelize
+├── routes/         # Configuração de endpoints
+├── database.js       # Configurações do banco
+└── app.js       # Ponto de inicialização
+```
 ## 📡 Endpoints da API
 
 ### **Questões**  
