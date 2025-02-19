@@ -35,7 +35,8 @@ Uma API RESTful para criação e gerenciamento de questionários dinâmicos, des
    ```bash
      npm install
      ```
-## Para rodar o Backend
+## Para rodar esse projeto
+  1 **Para iniciar o projeto**
   ```bash
      npm run dev
   ```
