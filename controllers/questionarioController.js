@@ -85,7 +85,7 @@ const buscarquestoesDisponiveis = async (req, res) => {
                 data_hora_fim: { [Op.gte]: new Date() }, 
             }
         });
-        console.log("Questões encontradas com sucesso!", questoes);
+        console.log("Questões encontradas com sucesso!");
         return res.status(200).json({ data: questoes });
     } catch (error) {
         console.error("Erro ao buscar questões:", error);
